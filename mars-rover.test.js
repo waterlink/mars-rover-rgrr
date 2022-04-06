@@ -205,6 +205,35 @@ describe("Rover", () => {
             });
         });
     });
+
+    describe("Sphere", () => {
+        describe("Moving out of the map border: starting position 6,6", () => {
+            let point;
+            let direction;
+            let topRightNode;
+
+            beforeEach(() => {
+                point = new Point(6, 6);
+                topRightNode = new Point(6,6);
+                direction = Direction.North;
+                rover = new Rover(point, direction, topRightNode);
+            });
+
+            it("command forward should move to 1,1", () => {
+                rover.acceptCommands(["f"]);
+
+                const expected = new Point(1, 1);
+                expect(rover.point).toEqual(expected);
+            });
+
+            it("command right, forward should move to 1,1", () => {
+                rover.acceptCommands(["r","f"]);
+
+                const expected = new Point(1, 1);
+                expect(rover.point).toEqual(expected);
+            });
+        })
+    })
 });
 
 describe("Point", () => {

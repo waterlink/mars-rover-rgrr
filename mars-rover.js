@@ -30,16 +30,24 @@ Direction.West.right = Direction.North;
 class Rover {
     point;
     direction;
+    topRightNode;
 
-    constructor(point, direction) {
+    constructor(point, direction, topRightNode) {
         this.point = point;
         this.direction = direction;
+        this.topRightNode = topRightNode;
     }
 
     acceptCommands(commands) {
         for (const command of commands) {
             if (command === "f") {
-                this.point[this.direction.moveAxis] += this.direction.moveSign;
+                if(this.topRightNode && this.point[this.direction.moveAxis] + this.direction.moveSign > this.topRightNode.x) {
+                    this.point['x'] = 1;
+                    this.point['y'] = 1;
+                } else {
+                    this.point[this.direction.moveAxis] += this.direction.moveSign;
+                }
+
             }
             if (command === "b") {
                 this.point[this.direction.moveAxis] -= this.direction.moveSign;
