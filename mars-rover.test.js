@@ -317,6 +317,14 @@ describe('Obstacle detection',  () => {
         rover.setObstacle(obstacle);
 
         await expect(rover.acceptCommands(["f", "l", "f"])).rejects.toThrowError(`Rover has encountered an obstacle at co-ordinate (${obstacle.x},${obstacle.y})`);
+    });
+
+    it('should retain the last valid position when moving more than one co-ordinate and encountering an obstacle', async () => {
+        const obstacle = new Point(2, 2);
+        const rover = new Rover(new Point(1, 1), Direction.East);
+        rover.setObstacle(obstacle);
+
+        await expect(rover.acceptCommands(["f", "l", "f"])).rejects.toThrowError(`Rover has encountered an obstacle at co-ordinate (${obstacle.x},${obstacle.y})`);
         expect(rover.point.x).toBe(2)
         expect(rover.point.y).toBe(1)
     });
