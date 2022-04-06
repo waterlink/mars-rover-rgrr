@@ -52,5 +52,16 @@ describe("Map", () => {
       });
       expect(map.obstacles).toEqual([]);
     });
+
+    it("Should throw an error if the obstacle is outside of map", () => {
+      const map = new Map({
+        xLeft: -6,
+        xRight: 20,
+        yTop: 10,
+        yBottom: 3
+      });
+      expect(() => map.addObstacle({ x: -20, y: 9 })).toThrowError("The added obstacle is outside of map");
+      expect(() => map.addObstacle({ x: 10, y: 33 })).toThrowError("The added obstacle is outside of map");
+    });
   });
 });
