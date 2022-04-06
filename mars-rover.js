@@ -30,6 +30,8 @@ Direction.West.right = Direction.North;
 class Rover {
     point;
     direction;
+    maxColumn = 6;
+    minColumn = 1;
 
     constructor(point, direction) {
         this.point = point;
@@ -39,7 +41,12 @@ class Rover {
     acceptCommands(commands) {
         for (const command of commands) {
             if (command === "f") {
-                this.point[this.direction.moveAxis] += this.direction.moveSign;
+                if((this.point.x === this.minColumn || this.point.y === this.minColumn) && this.direction.key === "S"){
+                    this.point.x = this.maxColumn;
+                    this.point.y = this.maxColumn;
+                }else{
+                    this.point[this.direction.moveAxis] += this.direction.moveSign;
+                }
             }
             if (command === "b") {
                 this.point[this.direction.moveAxis] -= this.direction.moveSign;
