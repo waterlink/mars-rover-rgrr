@@ -41,4 +41,16 @@ describe("Map", () => {
       ).toThrowError("The bottom y coordinate is greater than the top y");
     });
   });
+
+  describe("Map with obstacles", () => {
+    it("Should have the initally an empty list of obstacles", () => {
+      const map = new Map({
+        xLeft: -6,
+        xRight: 20,
+        yTop: 10,
+        yBottom: 3
+      });
+      expect(map.obstacles).toEqual([]);
+    });
+  });
 });

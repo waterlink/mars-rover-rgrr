@@ -6,6 +6,7 @@ class Map {
     this.xRight = xRight;
     this.yTop = yTop;
     this.yBottom = yBottom;
+    this.obstacles = [];
   }
 
   enforceCoordinatesAreCorrect({xLeft, xRight, yTop, yBottom}) {
