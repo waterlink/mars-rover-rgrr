@@ -63,8 +63,14 @@ class Rover {
                     currentPoint[this.direction.moveAxis] += this.direction.moveSign;
                 }
             }
+
             if (command === "b") {
-                currentPoint[this.direction.moveAxis] -= this.direction.moveSign;
+                if((currentPoint.x === this.minColumn || this.point.y === this.minColumn) && this.direction.key === "N" || this.direction.key === "E"){
+                    currentPoint.x = this.maxColumn;
+                    currentPoint.y = this.maxColumn;
+                }else{
+                    currentPoint[this.direction.moveAxis] -= this.direction.moveSign;
+                }
             }
             if (command === "l") {
                 this.direction = this.direction.left;
@@ -72,11 +78,13 @@ class Rover {
             if (command === "r") {
                 this.direction = this.direction.right;
             }
+
             if (await this.hasEncounteredObstacles(currentPoint)) {
                 throw new Error(`Rover has encountered an obstacle at co-ordinate (${currentPoint.x},${currentPoint.y})`);
             } else {
                 this.point = currentPoint;
             }
+            console.log(this.point)
         }
     }
 }

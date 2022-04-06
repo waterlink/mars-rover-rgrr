@@ -358,23 +358,49 @@ describe("when rover in begins in (1,1)", ()=>{
     describe("when rover move forward", ()=>{
         const moveCommand = "f"
 
-        it("points to (6,6) when rover direction is South", ()=>{
+        it("points to (6,6) when rover direction is South", async ()=>{
             const point = new Point(1, 1);
             const direction = Direction.South;
             rover = new Rover(point, direction);
 
-            rover.acceptCommands([moveCommand])
+           await rover.acceptCommands([moveCommand])
 
             expect(rover.point.x).toEqual(6)
             expect(rover.point.y).toEqual(6)
         })
 
-        it("points to (6,6) when rover direction is West", ()=>{
+        it("points to (6,6) when rover direction is West", async ()=>{
             const point = new Point(1, 1);
             const direction = Direction.West;
             rover = new Rover(point, direction);
 
-            rover.acceptCommands([moveCommand])
+           await rover.acceptCommands([moveCommand])
+
+            expect(rover.point.x).toEqual(6)
+            expect(rover.point.y).toEqual(6)
+        })
+    })
+
+    describe("when rover move backward", ()=>{
+        const moveCommand = "b"
+
+        it("points to (6,6) when rover direction is North", async ()=>{
+            const point = new Point(1, 1);
+            const direction = Direction.North;
+            rover = new Rover(point, direction);
+
+            await rover.acceptCommands([moveCommand])
+
+            expect(rover.point.x).toEqual(6)
+            expect(rover.point.y).toEqual(6)
+        })
+
+        it("points to (6,6) when rover direction is East", async ()=>{
+            const point = new Point(1, 1);
+            const direction = Direction.East;
+            rover = new Rover(point, direction);
+
+            await rover.acceptCommands([moveCommand])
 
             expect(rover.point.x).toEqual(6)
             expect(rover.point.y).toEqual(6)
