@@ -18,5 +18,16 @@ describe("Map", () => {
     it("Should throw an error when one of coordinates is not provided", () => {
       expect(() => new Map({ xLeft : 30 })).toThrowError("Not all coordinates provided");
     });
+
+    it("Should throw an error when left x is greater or equal the right x", () => {
+      expect(
+        () => new Map({
+          xLeft: 6,
+          xRight: 1,
+          yTop: 10,
+          yBottom: 7
+        })
+      ).toThrowError("The left x coordinate is greater than the right x");
+    });
   });
 });
