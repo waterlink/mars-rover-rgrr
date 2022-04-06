@@ -30,14 +30,14 @@ You’re part of the team that explores Mars by sending remotely controlled vehi
 
 Extension of TDD's Red-Green-Refactor cycle:
 
-1. RED — write a failing test
-2. GREEN — make it work (make a mess if necessary)
-3. REFACTOR:
-  - fix any mess introduced in GREEN step
-  - act on any other structural changes you would like to do
-  - check comments on few of your previous commits and either fix them here, or add them to your to-do list
-4. REVIEW:
-  - review new commits since your last review in the trunk branch
-  - leave your feedback comments on the commits
+1. **RED** — write a failing test
+2. **GREEN** — make it work (make a mess if necessary)
+3. **REFACTOR**:
+   - fix any mess introduced in GREEN step
+   - act on any other structural changes you would like to do
+   - check comments on few of your previous commits and either fix them here, or add them to your to-do list
+4. **REVIEW**:
+   - review new commits since your last review in the trunk branch
+   - leave your feedback comments on the commits
 5. Go back to step 1.
 
