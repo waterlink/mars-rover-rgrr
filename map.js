@@ -15,8 +15,10 @@ class Map {
     if (xLeft >= xRight) {
       throw new Error("The left x coordinate is greater than the right x");
     }
+    if(yTop <= yBottom) {
+      throw new Error("The bottom y coordinate is greater than the top y");
+    }
   }
-
 
 }
 

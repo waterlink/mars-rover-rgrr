@@ -29,5 +29,16 @@ describe("Map", () => {
         })
       ).toThrowError("The left x coordinate is greater than the right x");
     });
+
+    it("Should throw an error when bottom y is greater or equal the top y", () => {
+      expect(
+        () => new Map({
+          xLeft: -6,
+          xRight: 1,
+          yTop: 7,
+          yBottom: 10
+        })
+      ).toThrowError("The bottom y coordinate is greater than the top y");
+    });
   });
 });
