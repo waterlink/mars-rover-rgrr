@@ -301,14 +301,24 @@ describe("Direction", () => {
 
 
 describe('Obstacle detection',  () => {
-    it('should throw an error if an obstacle is in the way', async () => {
+    it('should throw an error if an obstacle is in the way when moving one co-ordinate', async () => {
         const obstacle = new Point(2, 1);
         const rover = new Rover(new Point(1, 1), Direction.East);
         rover.setObstacle(obstacle);
 
         await expect(rover.acceptCommands(["f"])).rejects.toThrowError(`Rover has encountered an obstacle at co-ordinate (${obstacle.x},${obstacle.y})`);
         expect(rover.point.x).toBe(1)
-        expect(rover.point.x).toBe(1)
+        expect(rover.point.y).toBe(1)
+    });
+
+    it('should throw an error if an obstacle is in the way when moving more than one co-ordinate', async () => {
+        const obstacle = new Point(2, 2);
+        const rover = new Rover(new Point(1, 1), Direction.East);
+        rover.setObstacle(obstacle);
+
+        await expect(rover.acceptCommands(["f", "l", "f"])).rejects.toThrowError(`Rover has encountered an obstacle at co-ordinate (${obstacle.x},${obstacle.y})`);
+        expect(rover.point.x).toBe(2)
+        expect(rover.point.y).toBe(1)
     });
 
     it('should NOT throw an error if no obstacle is in the way', async () => {
