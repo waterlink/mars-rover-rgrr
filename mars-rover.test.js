@@ -296,6 +296,24 @@ describe("Direction", () => {
             expect(Direction.West.right).toEqual(Direction.North);
         });
     });
+
+    describe('Obstacle detection',  () => {
+        it('should throw an error if an obstacle is in the way', async () => {
+            const obstacle = new Point(2, 1);
+            const rover = new Rover(new Point(1, 1), Direction.East);
+            rover.setObstacle(obstacle);
+
+            await expect(rover.acceptCommands(["f"])).rejects.toThrowError(`Rover has encountered an obstacle at co-ordinate (${obstacle.x},${obstacle.y})`);
+        });
+
+        it('should not throw an error if no obstacle is not in the way', () => {
+            const obstacle = new Point(1, 1);
+            const rover = new Rover(new Point(0, 0), Direction.North);
+            rover.obstacles = [obstacle];
+
+            expect(rover.isObstacleAhead()).toBeTruthy();
+        });
+    });
 });
 
 /*    N

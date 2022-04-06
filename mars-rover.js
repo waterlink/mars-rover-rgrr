@@ -32,30 +32,48 @@ class Rover {
     direction;
     maxColumn = 6;
     minColumn = 1;
+    obstacles = [];
 
     constructor(point, direction) {
         this.point = point;
         this.direction = direction;
     }
 
-    acceptCommands(commands) {
+    setObstacle(point) {
+        this.obstacles.push(point);
+    }
+
+    async hasEncounteredObstacles(point) {
+        for (const p of this.obstacles) {
+            if (point.x === p.x && point.y === p.y) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    async acceptCommands(commands) {
         for (const command of commands) {
+            const currentPoint = this.point;
             if (command === "f") {
-                if((this.point.x === this.minColumn || this.point.y === this.minColumn) && this.direction.key === "S"){
-                    this.point.x = this.maxColumn;
-                    this.point.y = this.maxColumn;
+                if((currentPoint.x === this.minColumn || this.point.y === this.minColumn) && this.direction.key === "S"){
+                    currentPoint.x = this.maxColumn;
+                    currentPoint.y = this.maxColumn;
                 }else{
-                    this.point[this.direction.moveAxis] += this.direction.moveSign;
+                    currentPoint[this.direction.moveAxis] += this.direction.moveSign;
                 }
             }
             if (command === "b") {
-                this.point[this.direction.moveAxis] -= this.direction.moveSign;
+                currentPoint[this.direction.moveAxis] -= this.direction.moveSign;
             }
             if (command === "l") {
                 this.direction = this.direction.left;
             }
             if (command === "r") {
                 this.direction = this.direction.right;
+            }
+            if (await this.hasEncounteredObstacles(currentPoint)) {
+                throw new Error(`Rover has encountered an obstacle at co-ordinate (${currentPoint.x},${currentPoint.y})`);
             }
         }
     }
