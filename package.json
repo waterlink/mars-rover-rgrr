@@ -1,0 +1,14 @@
+{
+  "name": "codingdojo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "private",
+  "private": true,
+  "dependencies": {
+    "jest": "^26.6.3"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watchAll"
+  }
+}
