@@ -331,14 +331,29 @@ describe("Direction", () => {
 
 */
 describe("when rover in begins in (1,1)", ()=>{
-    it("points to (6,6) when rover direction is South and move forward", ()=>{
-        const point = new Point(1, 1);
-        const direction = Direction.South;
-        rover = new Rover(point, direction);
+    describe("when rover move forward", ()=>{
+        const moveCommand = "f"
 
-        rover.acceptCommands(["f"])
+        it("points to (6,6) when rover direction is South", ()=>{
+            const point = new Point(1, 1);
+            const direction = Direction.South;
+            rover = new Rover(point, direction);
 
-        expect(rover.point.x).toEqual(6)
-        expect(rover.point.y).toEqual(6)
+            rover.acceptCommands([moveCommand])
+
+            expect(rover.point.x).toEqual(6)
+            expect(rover.point.y).toEqual(6)
+        })
+
+        it("points to (6,6) when rover direction is West", ()=>{
+            const point = new Point(1, 1);
+            const direction = Direction.West;
+            rover = new Rover(point, direction);
+
+            rover.acceptCommands([moveCommand])
+
+            expect(rover.point.x).toEqual(6)
+            expect(rover.point.y).toEqual(6)
+        })
     })
 })

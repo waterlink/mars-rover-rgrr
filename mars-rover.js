@@ -56,7 +56,7 @@ class Rover {
         for (const command of commands) {
             const currentPoint = this.point;
             if (command === "f") {
-                if((currentPoint.x === this.minColumn || this.point.y === this.minColumn) && this.direction.key === "S"){
+                if((currentPoint.x === this.minColumn || this.point.y === this.minColumn) && this.direction.key === "S" || this.direction.key === "W"){
                     currentPoint.x = this.maxColumn;
                     currentPoint.y = this.maxColumn;
                 }else{
