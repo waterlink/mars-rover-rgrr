@@ -54,7 +54,7 @@ class Rover {
 
     async acceptCommands(commands) {
         for (const command of commands) {
-            const currentPoint = this.point;
+            const currentPoint = JSON.parse(JSON.stringify(this.point));
             if (command === "f") {
                 if((currentPoint.x === this.minColumn || this.point.y === this.minColumn) && this.direction.key === "S" || this.direction.key === "W"){
                     currentPoint.x = this.maxColumn;
@@ -74,6 +74,8 @@ class Rover {
             }
             if (await this.hasEncounteredObstacles(currentPoint)) {
                 throw new Error(`Rover has encountered an obstacle at co-ordinate (${currentPoint.x},${currentPoint.y})`);
+            } else {
+                this.point = currentPoint;
             }
         }
     }
