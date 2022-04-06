@@ -13,4 +13,10 @@ describe("Map", () => {
     expect(map.yTop).toEqual(10);
     expect(map.yBottom).toEqual(3);
   });
+
+  describe("Map validation", () => {
+    it("Should throw an error when one of coordinates is not provided", () => {
+      expect(() => new Map({ xLeft : 30 })).toThrowError("Not all coordinates provided");
+    });
+  });
 });
