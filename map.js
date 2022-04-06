@@ -25,6 +25,7 @@ class Map {
     if(x < this.xLeft || x > this.xRight || y < this.yBottom || y > this.yTop) {
       throw new Error("The added obstacle is outside of map")
     }
+    this.obstacles.push({ x, y})
   }
 
 }

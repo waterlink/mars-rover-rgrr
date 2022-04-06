@@ -43,25 +43,26 @@ describe("Map", () => {
   });
 
   describe("Map with obstacles", () => {
+    const map = new Map({
+      xLeft: -6,
+      xRight: 20,
+      yTop: 10,
+      yBottom: 3
+    });
+
     it("Should have the initally an empty list of obstacles", () => {
-      const map = new Map({
-        xLeft: -6,
-        xRight: 20,
-        yTop: 10,
-        yBottom: 3
-      });
       expect(map.obstacles).toEqual([]);
     });
 
     it("Should throw an error if the obstacle is outside of map", () => {
-      const map = new Map({
-        xLeft: -6,
-        xRight: 20,
-        yTop: 10,
-        yBottom: 3
-      });
-      expect(() => map.addObstacle({ x: -20, y: 9 })).toThrowError("The added obstacle is outside of map");
-      expect(() => map.addObstacle({ x: 10, y: 33 })).toThrowError("The added obstacle is outside of map");
+      expect(() => map.addObstacle({x: -20, y: 9})).toThrowError("The added obstacle is outside of map");
+      expect(() => map.addObstacle({x: 10, y: 33})).toThrowError("The added obstacle is outside of map");
+    });
+
+    it("Should add the obstacle to the list of obstacles of a map", () => {
+      map.addObstacle({x: 10, y: 7});
+      map.addObstacle({x: 12, y: 8});
+      expect(map.obstacles).toEqual([{x: 10, y: 7}, {x: 12, y: 8}])
     });
   });
 });
