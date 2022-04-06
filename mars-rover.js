@@ -54,7 +54,7 @@ class Rover {
 
     async acceptCommands(commands) {
         for (const command of commands) {
-            const currentPoint = this.point;
+            const currentPoint = JSON.parse(JSON.stringify(this.point));
             if (command === "f") {
                 if((currentPoint.x === this.minColumn || this.point.y === this.minColumn) && this.direction.key === "S"){
                     currentPoint.x = this.maxColumn;
