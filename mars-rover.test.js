@@ -4,7 +4,7 @@ describe("Rover", () => {
     let rover;
 
     it("You are given the initial starting point (x,y) " +
-        "of a rover and the direction (N,S,E,W) it is facing.", () => {
+      "of a rover and the direction (N,S,E,W) it is facing.", () => {
         const point = new Point(1, 2);
         const direction = Direction.East;
 
@@ -202,6 +202,24 @@ describe("Rover", () => {
                 rover.acceptCommands(["r"]);
 
                 expect(rover.direction).toEqual(Direction.South);
+            });
+        });
+    });
+
+    describe("When the map is a simplistic 'sphere' mirroring on the center of the map", () => {
+        describe("and the rover is pointing north on the top-right edge of the map", () => {
+            beforeEach(() => {
+                const point = new Point(5, 5);
+                const direction = Direction.North;
+                const mapSize = 5;
+                rover = new Rover(point, direction, mapSize);
+            });
+
+            it("can move forward once", () => {
+                rover.acceptCommands(["f"]);
+
+                const expected = new Point(1, 1);
+                expect(rover.point).toEqual(expected);
             });
         });
     });
