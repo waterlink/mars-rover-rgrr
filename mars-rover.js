@@ -73,7 +73,12 @@ class Rover {
                 }
             }
             if (command === "l") {
-                this.direction = this.direction.left;
+                if((currentPoint.x === this.minColumn || this.point.y === this.minColumn) && this.direction.key === "N" || this.direction.key === "W") {
+                    currentPoint.x = this.maxColumn;
+                    currentPoint.y = this.maxColumn;
+                } else{
+                    this.direction = this.direction.left;
+                }
             }
             if (command === "r") {
                 this.direction = this.direction.right;
