@@ -304,14 +304,18 @@ describe("Direction", () => {
             rover.setObstacle(obstacle);
 
             await expect(rover.acceptCommands(["f"])).rejects.toThrowError(`Rover has encountered an obstacle at co-ordinate (${obstacle.x},${obstacle.y})`);
+            expect(rover.point.x).toBe(1)
+            expect(rover.point.x).toBe(1)
         });
 
-        it('should not throw an error if no obstacle is not in the way', () => {
-            const obstacle = new Point(1, 1);
-            const rover = new Rover(new Point(0, 0), Direction.North);
-            rover.obstacles = [obstacle];
+        it('should NOT throw an error if no obstacle is in the way', async () => {
+            const obstacle = new Point(3, 1);
+            const rover = new Rover(new Point(1, 1), Direction.East);
+            rover.setObstacle(obstacle);
 
-            expect(rover.isObstacleAhead()).toBeTruthy();
+            await expect(rover.acceptCommands(["f"])).resolves.toBe(undefined);
+            expect(rover.point.x).toBe(2)
+            expect(rover.point.x).toBe(1)
         });
     });
 });

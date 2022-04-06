@@ -74,6 +74,8 @@ class Rover {
             }
             if (await this.hasEncounteredObstacles(currentPoint)) {
                 throw new Error(`Rover has encountered an obstacle at co-ordinate (${currentPoint.x},${currentPoint.y})`);
+            } else {
+                this.point = currentPoint;
             }
         }
     }
