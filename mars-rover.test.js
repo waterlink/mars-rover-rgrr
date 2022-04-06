@@ -207,19 +207,42 @@ describe("Rover", () => {
     });
 
     describe("When the map is a simplistic 'sphere' mirroring on the center of the map", () => {
-        describe("and the rover is pointing north on the top-right edge of the map", () => {
+        describe('and we assume a Map from 1,1 to 5,5', () => {
+            let mapSize;
+            let bottomLeftPoint;
+
             beforeEach(() => {
+              mapSize = 5;
+              bottomLeftPoint = new Point(1, 1);
+            })
+
+            describe("and the rover is pointing north on the top-right edge of the map", () => {
+              beforeEach(() => {
                 const point = new Point(5, 5);
                 const direction = Direction.North;
-                const mapSize = 5;
-                rover = new Rover(point, direction, mapSize);
-            });
+                rover = new Rover(point, direction, mapSize, bottomLeftPoint);
+              });
 
-            it("can move forward once", () => {
+              it("can move forward once", () => {
                 rover.acceptCommands(["f"]);
 
                 const expected = new Point(1, 1);
                 expect(rover.point).toEqual(expected);
+              });
+            });
+            describe("and the rover is pointing south on the bottom-left edge of the map", () => {
+              beforeEach(() => {
+                const point = new Point(1, 1);
+                const direction = Direction.South;
+                rover = new Rover(point, direction, mapSize, bottomLeftPoint);
+              });
+
+              it("can move forward once", () => {
+                rover.acceptCommands(["f"]);
+
+                const expected = new Point(5, 5);
+                expect(rover.point).toEqual(expected);
+              });
             });
         });
     });

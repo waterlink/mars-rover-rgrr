@@ -31,19 +31,24 @@ class Rover {
     point;
     direction;
     mapSize;
+    bottomLeftPoint;
 
-    constructor(point, direction, mapSize) {
+    constructor(point, direction, mapSize, bottomLeftPoint) {
         this.point = point;
         this.direction = direction;
         this.mapSize = mapSize;
+        this.bottomLeftPoint = bottomLeftPoint;
     }
 
     acceptCommands(commands) {
         for (const command of commands) {
             if (command === "f") {
                 if (this.point[this.direction.moveAxis] + this.direction.moveSign > this.mapSize) {
-                    this.point['x'] = 1;
-                    this.point['y'] = 1;
+                    this.point['x'] = this.bottomLeftPoint.x;
+                    this.point['y'] = this.bottomLeftPoint.y;
+                } else if (this.bottomLeftPoint && this.point[this.direction.moveAxis] + this.direction.moveSign <= this.bottomLeftPoint.x) {
+                    this.point['x'] = this.bottomLeftPoint.x + this.mapSize - 1;
+                    this.point['y'] = this.bottomLeftPoint.y + this.mapSize - 1;
                 } else {
                     this.point[this.direction.moveAxis] += this.direction.moveSign;
                 }
