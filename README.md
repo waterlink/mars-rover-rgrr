@@ -2,7 +2,7 @@
 
 ## Coding Kata
 
-Credits: Inspired by Victor Farcic; text from https://kata-log.rocks/mars-rover-kata
+Credits: Inspired by [Victor Farcic](https://technologyconversations.com/2014/10/17/java-tutorial-through-katas-mars-rover/); text from https://kata-log.rocks/mars-rover-kata
 
 ### Your Task
 
