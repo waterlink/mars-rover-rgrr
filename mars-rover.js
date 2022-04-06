@@ -36,22 +36,26 @@ class Rover {
         this.point = point;
         this.direction = direction;
         this.topRightNode = topRightNode;
+        this.NODE_SOUTH_WEST = new Point(1, 1);
     }
 
     acceptCommands(commands) {
         for (const command of commands) {
-            if (command === "f") {
-                if(this.topRightNode && this.point[this.direction.moveAxis] + this.direction.moveSign > this.topRightNode.x) {
-                    this.point['x'] = 1;
-                    this.point['y'] = 1;
-                } else {
-                    this.point[this.direction.moveAxis] += this.direction.moveSign;
+            const border = this.topRightNode[this.direction.moveAxis];
+            if(["f", "b"].includes(command)) {
+                const move = {
+                    "f": 1 * this.direction.moveSign,
+                    "b": -1 * this.direction.moveSign
                 }
+                const nextPosition = this.point[this.direction.moveAxis] + move[command];
+                const isOutOfBorders = this.topRightNode && nextPosition > border;
+                if(isOutOfBorders)   {
+                    this.point = this.NODE_SOUTH_WEST;
+                } else {
+                    this.point[this.direction.moveAxis] = nextPosition;
+                }
+            }
 
-            }
-            if (command === "b") {
-                this.point[this.direction.moveAxis] -= this.direction.moveSign;
-            }
             if (command === "l") {
                 this.direction = this.direction.left;
             }

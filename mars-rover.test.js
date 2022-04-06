@@ -215,19 +215,39 @@ describe("Rover", () => {
             beforeEach(() => {
                 point = new Point(6, 6);
                 topRightNode = new Point(6,6);
-                direction = Direction.North;
-                rover = new Rover(point, direction, topRightNode);
             });
 
-            it("command forward should move to 1,1", () => {
+            it("facing North, command forward should move to 1,1", () => {
+                direction = Direction.North;
+                rover = new Rover(point, direction, topRightNode);
                 rover.acceptCommands(["f"]);
 
                 const expected = new Point(1, 1);
                 expect(rover.point).toEqual(expected);
             });
 
-            it("command right, forward should move to 1,1", () => {
+            it("facing North, command right, forward should move to 1,1", () => {
+                direction = Direction.North;
+                rover = new Rover(point, direction, topRightNode);
                 rover.acceptCommands(["r","f"]);
+
+                const expected = new Point(1, 1);
+                expect(rover.point).toEqual(expected);
+            });
+
+            it("facing South, command backwards should move to 1,1", () => {
+                direction = Direction.South;
+                rover = new Rover(point, direction, topRightNode);
+                rover.acceptCommands(["b"]);
+
+                const expected = new Point(1, 1);
+                expect(rover.point).toEqual(expected);
+            });
+
+            it("facing South, command right, backwards should move to 1,1", () => {
+                direction = Direction.South;
+                rover = new Rover(point, direction, topRightNode);
+                rover.acceptCommands(["r","b"]);
 
                 const expected = new Point(1, 1);
                 expect(rover.point).toEqual(expected);
