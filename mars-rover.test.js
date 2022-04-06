@@ -432,4 +432,30 @@ describe("when rover in begins in (1,1)", ()=>{
             expect(rover.point.y).toEqual(6)
         })
     })
+
+    describe("when rover move right", ()=>{
+        const moveCommand = "r"
+
+        it("points to (6,6) when rover direction is East", async ()=>{
+            const point = new Point(1, 1);
+            const direction = Direction.East;
+            rover = new Rover(point, direction);
+
+            await rover.acceptCommands([moveCommand])
+
+            expect(rover.point.x).toEqual(6)
+            expect(rover.point.y).toEqual(6)
+        })
+
+        it("points to (6,6) when rover direction is South", async ()=>{
+            const point = new Point(1, 1);
+            const direction = Direction.South;
+            rover = new Rover(point, direction);
+
+            await rover.acceptCommands([moveCommand])
+
+            expect(rover.point.x).toEqual(6)
+            expect(rover.point.y).toEqual(6)
+        })
+    })
 })

@@ -81,7 +81,12 @@ class Rover {
                 }
             }
             if (command === "r") {
-                this.direction = this.direction.right;
+                if((currentPoint.x === this.minColumn || this.point.y === this.minColumn) && this.direction.key === "E" || this.direction.key === "S") {
+                    currentPoint.x = this.maxColumn;
+                    currentPoint.y = this.maxColumn;
+                } else{
+                    this.direction = this.direction.right;
+                }
             }
 
             if (await this.hasEncounteredObstacles(currentPoint)) {
