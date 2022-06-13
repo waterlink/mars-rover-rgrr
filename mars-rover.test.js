@@ -15,7 +15,7 @@ describe("Rover", () => {
     });
 
     it("The rover receives a character array of commands.", () => {
-        const point = new Point(2, -1);
+        const point = new Point(2, 1);
         const direction = Direction.South;
         const rover = new Rover(point, direction);
 
@@ -30,7 +30,7 @@ describe("Rover", () => {
     describe("Implement commands that move the rover forward/backward (f,b).", () => {
         describe("when rover is pointing north", () => {
             beforeEach(() => {
-                const point = new Point(2, -1);
+                const point = new Point(2, 2);
                 const direction = Direction.North;
                 rover = new Rover(point, direction);
             });
@@ -38,12 +38,34 @@ describe("Rover", () => {
             it("can move forward once", () => {
                 rover.acceptCommands(["f"]);
 
-                const expected = new Point(2, 0);
+                const expected = new Point(2, 3);
                 expect(rover.point).toEqual(expected);
             });
 
             it("can move forward twice", () => {
                 rover.acceptCommands(["f", "f"]);
+
+                const expected = new Point(2, 4);
+                expect(rover.point).toEqual(expected);
+            });
+
+            it("can move backwards once", () => {
+                rover.acceptCommands(["b"]);
+
+                const expected = new Point(2, 1);
+                expect(rover.point).toEqual(expected);
+            });
+        });
+
+        describe("when rover is pointing South", () => {
+            beforeEach(() => {
+                const point = new Point(2, 2);
+                const direction = Direction.South;
+                rover = new Rover(point, direction);
+            });
+
+            it("can move forward once", () => {
+                rover.acceptCommands(["f"]);
 
                 const expected = new Point(2, 1);
                 expect(rover.point).toEqual(expected);
@@ -52,36 +74,14 @@ describe("Rover", () => {
             it("can move backwards once", () => {
                 rover.acceptCommands(["b"]);
 
-                const expected = new Point(2, -2);
-                expect(rover.point).toEqual(expected);
-            });
-        });
-
-        describe("when rover is pointing South", () => {
-            beforeEach(() => {
-                const point = new Point(2, -1);
-                const direction = Direction.South;
-                rover = new Rover(point, direction);
-            });
-
-            it("can move forward once", () => {
-                rover.acceptCommands(["f"]);
-
-                const expected = new Point(2, -2);
-                expect(rover.point).toEqual(expected);
-            });
-
-            it("can move backwards once", () => {
-                rover.acceptCommands(["b"]);
-
-                const expected = new Point(2, 0);
+                const expected = new Point(2, 3);
                 expect(rover.point).toEqual(expected);
             });
         });
 
         describe("when rover is pointing West", () => {
             beforeEach(() => {
-                const point = new Point(2, -1);
+                const point = new Point(2, 2);
                 const direction = Direction.West;
                 rover = new Rover(point, direction);
             });
@@ -89,21 +89,21 @@ describe("Rover", () => {
             it("can move forward once", () => {
                 rover.acceptCommands(["f"]);
 
-                const expected = new Point(1, -1);
+                const expected = new Point(1, 2);
                 expect(rover.point).toEqual(expected);
             });
 
             it("can move backwards once", () => {
                 rover.acceptCommands(["b"]);
 
-                const expected = new Point(3, -1);
+                const expected = new Point(3, 2);
                 expect(rover.point).toEqual(expected);
             });
         });
 
         describe("when rover is pointing East", () => {
             beforeEach(() => {
-                const point = new Point(2, -1);
+                const point = new Point(2, 2);
                 const direction = Direction.East;
                 rover = new Rover(point, direction);
             });
@@ -111,14 +111,14 @@ describe("Rover", () => {
             it("can move forward once", () => {
                 rover.acceptCommands(["f"]);
 
-                const expected = new Point(3, -1);
+                const expected = new Point(3, 2);
                 expect(rover.point).toEqual(expected);
             });
 
             it("can move backwards once", () => {
                 rover.acceptCommands(["b"]);
 
-                const expected = new Point(1, -1);
+                const expected = new Point(1, 2);
                 expect(rover.point).toEqual(expected);
             });
         });
@@ -127,7 +127,7 @@ describe("Rover", () => {
     describe("Implement commands that turn the rover left/right (l,r).", () => {
         describe("when rover is pointing North", () => {
             beforeEach(() => {
-                const point = new Point(2, -1);
+                const point = new Point(2, 2);
                 const direction = Direction.North;
                 rover = new Rover(point, direction);
             });
@@ -147,7 +147,7 @@ describe("Rover", () => {
 
         describe("when rover is pointing South", () => {
             beforeEach(() => {
-                const point = new Point(2, -1);
+                const point = new Point(2, 2);
                 const direction = Direction.South;
                 rover = new Rover(point, direction);
             });
@@ -167,7 +167,7 @@ describe("Rover", () => {
 
         describe("when rover is pointing West", () => {
             beforeEach(() => {
-                const point = new Point(2, -1);
+                const point = new Point(2, 2);
                 const direction = Direction.West;
                 rover = new Rover(point, direction);
             });
@@ -187,7 +187,7 @@ describe("Rover", () => {
 
         describe("when rover is pointing East", () => {
             beforeEach(() => {
-                const point = new Point(2, -1);
+                const point = new Point(2, 2);
                 const direction = Direction.East;
                 rover = new Rover(point, direction);
             });
@@ -209,9 +209,9 @@ describe("Rover", () => {
 
 describe("Point", () => {
     it("accepts two different coordinates", () => {
-        const point = new Point(3, -2);
+        const point = new Point(3, 2);
         expect(point.x).toEqual(3);
-        expect(point.y).toEqual(-2);
+        expect(point.y).toEqual(2);
     });
 });
 
