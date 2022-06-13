@@ -42,3 +42,9 @@ Extension of TDD's Red-Green-Refactor cycle:
    - leave your feedback comments on the commits
 5. Go back to step 1.
 
+**DON‘T PUSH BROKEN CODE!**
+- Your partner is relying on the code that you‘re pushing
+- Don‘t break the build
+- Push only when in the GREEN state (all tests are passing)
+
+
