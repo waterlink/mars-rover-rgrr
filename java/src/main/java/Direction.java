@@ -13,7 +13,7 @@ class Direction {
 
     @Override
     public String toString() {
-        return "{" + this.moveAxis + "," + this.moveSign + "}";
+        return "{" + moveAxis + "," + moveSign + "}";
     }
 
     static Direction NORTH = new Direction("y", -1);

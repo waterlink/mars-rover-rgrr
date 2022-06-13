@@ -38,6 +38,6 @@ class Rover {
         if (landscape.isObstacle(newPoint)) {
             throw new ObstacleDetected();
         }
-        this.point = newPoint;
+        point = newPoint;
     }
 }

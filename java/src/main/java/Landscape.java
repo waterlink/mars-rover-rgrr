@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Landscape {
-    private List<Point> obstacles = new ArrayList<>();
+    private final List<Point> obstacles = new ArrayList<>();
 
     public void addObstacle(Point obstacle) {
         obstacles.add(obstacle);

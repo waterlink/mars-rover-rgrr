@@ -16,7 +16,7 @@ class Point {
     }
 
     private Point move(String axis, int increment) {
-        Point point = new Point(this.x, this.y);
+        Point point = new Point(x, y);
 
         if (axis.equals("y")) point.y += increment;
         if (axis.equals("x")) point.x += increment;
@@ -25,7 +25,7 @@ class Point {
 
     @Override
     public String toString() {
-        return "{" + this.x + "," + this.y + "}";
+        return "{" + x + "," + y + "}";
     }
 
     @Override
