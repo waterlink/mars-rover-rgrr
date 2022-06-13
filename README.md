@@ -16,7 +16,8 @@ You’re part of the team that explores Mars by sending remotely controlled vehi
 - Implement commands that turn the rover left/right (l,r).
 
 ### Requirements (Stage 2) — your tasks
-- Implement wrapping at edges. But be careful, planets are spheres. Connect the x edge to the other x edge, so (1,1) for x-1 to (5,1), but connect vertical edges towards themselves in inverted coordinates, so (1,1) for y-1 connects to (5,1).
+- Implement wrapping at edges. But be careful, planets are spheres. Follow the lines of longitude and latitude. Here is an example wrapping for the planet with the size of 5,5:
+  ![example-edge-wrapping](./img/rover-sphere-wrapping-example.png)
 - Implement obstacle detection before each move to a new square. If a given sequence of commands encounters an obstacle, the rover moves up to the last possible point, aborts the sequence and reports the obstacle.
 
 ## Approach 1: Pair-Programming with Trunk-Based Development (PP/TBD)
