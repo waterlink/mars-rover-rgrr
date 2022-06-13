@@ -190,4 +190,18 @@ public class RoverTest {
         Point expected = new Point(2, 3);
         assertEquals(expected, rover.point);
     }
+
+    @Test
+    void detects_an_obstacle_when_moving_backward_and_does_not_move_to_an_obstacle() {
+        Point point = new Point(2, 3);
+        Direction direction = Direction.NORTH;
+        Rover rover = new Rover(landscape, point, direction);
+
+        Point obstacle = new Point(2, 4);
+        landscape.addObstacle(obstacle);
+
+        assertThrows(ObstacleDetected.class, () -> rover.acceptCommands(Arrays.asList("b")));
+        Point expected = new Point(2, 3);
+        assertEquals(expected, rover.point);
+    }
 }

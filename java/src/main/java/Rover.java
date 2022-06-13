@@ -15,24 +15,29 @@ class Rover {
     void acceptCommands(List<String> commands) {
         commands.forEach((command) -> {
             if (command.equals("f")) {
-                Point point = this.point.forward(this.direction);
-                if (this.landscape.isObstacle(point)) {
-                    throw new ObstacleDetected();
-                }
-                this.point = point;
+                Point newPoint = point.forward(direction);
+                moveTo(newPoint);
             }
 
             if (command.equals("b")) {
-                this.point = this.point.backward(this.direction);
+                Point newPoint = point.backward(direction);
+                moveTo(newPoint);
             }
 
             if (command.equals("l")) {
-                this.direction = this.direction.left;
+                direction = direction.left;
             }
 
             if (command.equals("r")) {
-                this.direction = this.direction.right;
+                direction = direction.right;
             }
         });
+    }
+
+    private void moveTo(Point newPoint) {
+        if (landscape.isObstacle(newPoint)) {
+            throw new ObstacleDetected();
+        }
+        this.point = newPoint;
     }
 }
