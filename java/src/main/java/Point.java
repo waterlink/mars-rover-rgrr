@@ -15,7 +15,7 @@ class Point {
         return this.move(direction.moveAxis, -direction.moveSign);
     }
 
-    private Point  move(String axis, int increment) {
+    private Point move(String axis, int increment) {
         Point point = new Point(this.x, this.y);
 
         if (axis.equals("y")) point.y += increment;

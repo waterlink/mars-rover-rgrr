@@ -178,7 +178,7 @@ public class RoverTest {
     }
 
     @Test
-    void detects_an_obstacle_when_moving_forward() {
+    void detects_an_obstacle_when_moving_forward_and_does_not_move_to_an_obstacle() {
         Point point = new Point(2, 3);
         Direction direction = Direction.NORTH;
         Rover rover = new Rover(landscape, point, direction);
@@ -187,5 +187,7 @@ public class RoverTest {
         landscape.addObstacle(obstacle);
 
         assertThrows(ObstacleDetected.class, () -> rover.acceptCommands(Arrays.asList("f")));
+        Point expected = new Point(2, 3);
+        assertEquals(expected, rover.point);
     }
 }
