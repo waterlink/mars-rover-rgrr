@@ -1,13 +1,23 @@
 import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.*;
-import java.util.*;
+
+import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class RoverTest {
 
+    private Landscape landscape;
+
     @BeforeAll
-    static void setUp() {
+    static void setUpAll() {
         Direction.init();
+    }
+
+    @BeforeEach
+    void setUp() {
+        landscape = new Landscape();
     }
 
     @Test
@@ -15,7 +25,7 @@ public class RoverTest {
         Point point = new Point(1, 2);
         Direction direction = Direction.EAST;
 
-        Rover rover = new Rover(point, direction);
+        Rover rover = new Rover(landscape, point, direction);
 
         assertEquals(point, rover.point);
         assertEquals(direction, rover.direction);
@@ -25,7 +35,7 @@ public class RoverTest {
     void when_pointing_north_move_forward_once() {
         Point point = new Point(2, 3);
         Direction direction = Direction.NORTH;
-        Rover rover = new Rover(point, direction);
+        Rover rover = new Rover(landscape, point, direction);
 
         rover.acceptCommands(Arrays.asList("f"));
 
@@ -37,7 +47,7 @@ public class RoverTest {
     void when_pointing_north_move_forward_twice() {
         Point point = new Point(2, 3);
         Direction direction = Direction.NORTH;
-        Rover rover = new Rover(point, direction);
+        Rover rover = new Rover(landscape, point, direction);
 
         rover.acceptCommands(Arrays.asList("f", "f"));
 
@@ -49,7 +59,7 @@ public class RoverTest {
     void when_pointing_north_move_backwards_once() {
         Point point = new Point(2, 3);
         Direction direction = Direction.NORTH;
-        Rover rover = new Rover(point, direction);
+        Rover rover = new Rover(landscape, point, direction);
 
         rover.acceptCommands(Arrays.asList("b"));
 
@@ -61,7 +71,7 @@ public class RoverTest {
     void when_pointing_south_move_forward_once() {
         Point point = new Point(2, 3);
         Direction direction = Direction.SOUTH;
-        Rover rover = new Rover(point, direction);
+        Rover rover = new Rover(landscape, point, direction);
 
         rover.acceptCommands(Arrays.asList("f"));
 
@@ -73,7 +83,7 @@ public class RoverTest {
     void when_pointing_south_move_backwards_once() {
         Point point = new Point(2, 3);
         Direction direction = Direction.SOUTH;
-        Rover rover = new Rover(point, direction);
+        Rover rover = new Rover(landscape, point, direction);
 
         rover.acceptCommands(Arrays.asList("b"));
 
@@ -85,7 +95,7 @@ public class RoverTest {
     void when_pointing_east_move_forward_once() {
         Point point = new Point(2, 3);
         Direction direction = Direction.EAST;
-        Rover rover = new Rover(point, direction);
+        Rover rover = new Rover(landscape, point, direction);
 
         rover.acceptCommands(Arrays.asList("f"));
 
@@ -97,7 +107,7 @@ public class RoverTest {
     void when_pointing_east_move_backwards_once() {
         Point point = new Point(2, 3);
         Direction direction = Direction.EAST;
-        Rover rover = new Rover(point, direction);
+        Rover rover = new Rover(landscape, point, direction);
 
         rover.acceptCommands(Arrays.asList("b"));
 
@@ -109,7 +119,7 @@ public class RoverTest {
     void when_pointing_west_move_forward_once() {
         Point point = new Point(2, 3);
         Direction direction = Direction.WEST;
-        Rover rover = new Rover(point, direction);
+        Rover rover = new Rover(landscape, point, direction);
 
         rover.acceptCommands(Arrays.asList("f"));
 
@@ -121,7 +131,7 @@ public class RoverTest {
     void when_pointing_west_move_backwards_once() {
         Point point = new Point(2, 3);
         Direction direction = Direction.WEST;
-        Rover rover = new Rover(point, direction);
+        Rover rover = new Rover(landscape, point, direction);
 
         rover.acceptCommands(Arrays.asList("b"));
 
@@ -133,7 +143,7 @@ public class RoverTest {
     void left_rotations() {
         Point point = new Point(2, 3);
         Direction direction = Direction.NORTH;
-        Rover rover = new Rover(point, direction);
+        Rover rover = new Rover(landscape, point, direction);
 
         rover.acceptCommands(Arrays.asList("l"));
         assertEquals(Direction.WEST, rover.direction);
@@ -152,7 +162,7 @@ public class RoverTest {
     void right_rotations() {
         Point point = new Point(2, 3);
         Direction direction = Direction.NORTH;
-        Rover rover = new Rover(point, direction);
+        Rover rover = new Rover(landscape, point, direction);
 
         rover.acceptCommands(Arrays.asList("r"));
         assertEquals(Direction.EAST, rover.direction);
@@ -165,5 +175,17 @@ public class RoverTest {
 
         rover.acceptCommands(Arrays.asList("r"));
         assertEquals(Direction.NORTH, rover.direction);
+    }
+
+    @Test
+    void detects_an_obstacle_when_moving_forward() {
+        Point point = new Point(2, 3);
+        Direction direction = Direction.NORTH;
+        Rover rover = new Rover(landscape, point, direction);
+
+        Point obstacle = new Point(2, 2);
+        landscape.addObstacle(obstacle);
+
+        assertThrows(ObstacleDetected.class, () -> rover.acceptCommands(Arrays.asList("f")));
     }
 }

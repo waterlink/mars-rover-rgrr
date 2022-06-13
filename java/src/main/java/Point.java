@@ -7,17 +7,20 @@ class Point {
         this.y = y;
     }
 
-    void forward(Direction direction) {
-        this.move(direction.moveAxis, direction.moveSign);
+    Point forward(Direction direction) {
+        return this.move(direction.moveAxis, direction.moveSign);
     }
 
-    void backward(Direction direction) {
-        this.move(direction.moveAxis, -direction.moveSign);
+    Point backward(Direction direction) {
+        return this.move(direction.moveAxis, -direction.moveSign);
     }
 
-    private void move(String axis, int increment) {
-        if (axis.equals("y")) this.y += increment;
-        if (axis.equals("x")) this.x += increment;
+    private Point  move(String axis, int increment) {
+        Point point = new Point(this.x, this.y);
+
+        if (axis.equals("y")) point.y += increment;
+        if (axis.equals("x")) point.x += increment;
+        return point;
     }
 
     @Override
