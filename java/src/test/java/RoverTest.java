@@ -47,7 +47,7 @@ public class RoverTest {
     void when_pointing_north_forward_over_the_edge() {
         Point point = new Point(1, 1);
         Direction direction = Direction.NORTH;
-        Rover rover = new Rover(point, direction);
+        Rover rover = new Rover(landscape, point, direction);
 
         rover.acceptCommands(Arrays.asList("f"));
 
