@@ -5,6 +5,11 @@ import java.util.*;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class RoverTest {
 
+    @BeforeAll
+    static void setUp() {
+        Direction.init();
+    }
+
     @Test
     void init_starting_point_and_direction() {
         Point point = new Point(1, 2);

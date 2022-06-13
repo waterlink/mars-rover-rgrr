@@ -1,2 +1,4 @@
 .idea
-node_modules
+/javascript/node_modules
+/java/.gradle/
+/java/build/
