@@ -44,6 +44,19 @@ public class RoverTest {
     }
 
     @Test
+    void when_pointing_north_forward_over_the_edge() {
+        Point point = new Point(1, 1);
+        Direction direction = Direction.NORTH;
+        Rover rover = new Rover(point, direction);
+
+        rover.acceptCommands(Arrays.asList("f"));
+
+        Point expected = new Point(Point.PLANET_SIZE, Point.PLANET_SIZE);
+        assertEquals(expected, rover.point);
+    }
+
+    
+    @Test
     void when_pointing_north_move_forward_twice() {
         Point point = new Point(2, 3);
         Direction direction = Direction.NORTH;

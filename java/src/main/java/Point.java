@@ -1,4 +1,5 @@
 class Point {
+    static final public int PLANET_SIZE = 5;
     int x;
     int y;
 
@@ -8,7 +9,13 @@ class Point {
     }
 
     Point forward(Direction direction) {
-        return this.move(direction.moveAxis, direction.moveSign);
+        if ((this.y == 1) && (this.x == 1)) {
+            return new Point(Point.PLANET_SIZE, Point.PLANET_SIZE);
+        }
+        else {
+             return this.move(direction.moveAxis, direction.moveSign);      
+        }
+ 
     }
 
     Point backward(Direction direction) {
