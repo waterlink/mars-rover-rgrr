@@ -30,7 +30,7 @@ describe("Rover", () => {
     describe("Implement commands that move the rover forward/backward (f,b).", () => {
         describe("when rover is pointing north", () => {
             beforeEach(() => {
-                const point = new Point(2, 2);
+                const point = new Point(2, 3);
                 const direction = Direction.North;
                 rover = new Rover(point, direction);
             });
@@ -38,21 +38,21 @@ describe("Rover", () => {
             it("can move forward once", () => {
                 rover.acceptCommands(["f"]);
 
-                const expected = new Point(2, 3);
+                const expected = new Point(2, 2);
                 expect(rover.point).toEqual(expected);
             });
 
             it("can move forward twice", () => {
                 rover.acceptCommands(["f", "f"]);
 
-                const expected = new Point(2, 4);
+                const expected = new Point(2, 1);
                 expect(rover.point).toEqual(expected);
             });
 
             it("can move backwards once", () => {
                 rover.acceptCommands(["b"]);
 
-                const expected = new Point(2, 1);
+                const expected = new Point(2, 4);
                 expect(rover.point).toEqual(expected);
             });
         });
@@ -67,14 +67,14 @@ describe("Rover", () => {
             it("can move forward once", () => {
                 rover.acceptCommands(["f"]);
 
-                const expected = new Point(2, 1);
+                const expected = new Point(2, 3);
                 expect(rover.point).toEqual(expected);
             });
 
             it("can move backwards once", () => {
                 rover.acceptCommands(["b"]);
 
-                const expected = new Point(2, 3);
+                const expected = new Point(2, 1);
                 expect(rover.point).toEqual(expected);
             });
         });
@@ -230,8 +230,8 @@ describe("Direction", () => {
             expect(Direction.North.moveAxis).toEqual("y");
         });
 
-        it("moves in positive direction", () => {
-            expect(Direction.North.moveSign).toEqual(1);
+        it("moves in negative direction", () => {
+            expect(Direction.North.moveSign).toEqual(-1);
         });
 
         it("rotates left to West", () => {
@@ -248,8 +248,8 @@ describe("Direction", () => {
             expect(Direction.South.moveAxis).toEqual("y");
         });
 
-        it("moves in negative direction", () => {
-            expect(Direction.South.moveSign).toEqual(-1);
+        it("moves in positive direction", () => {
+            expect(Direction.South.moveSign).toEqual(1);
         });
 
         it("rotates left to East", () => {

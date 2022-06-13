@@ -9,8 +9,8 @@ class Point {
 }
 
 const Direction = {
-    North: { key: "N", moveAxis: "y", moveSign: 1 },
-    South: { key: "S", moveAxis: "y", moveSign: -1 },
+    North: { key: "N", moveAxis: "y", moveSign: -1 },
+    South: { key: "S", moveAxis: "y", moveSign: 1 },
     East: { key: "E", moveAxis: "x", moveSign: 1 },
     West: { key: "W", moveAxis: "x", moveSign: -1  }
 };
